@@ -127,3 +127,22 @@ console.log("Is there any Part Time Wage?", anyPartTime);
 // g. Find the number of days the Employee Worked
 let numDaysWorked = dailyWageArray.filter(wage => wage > 0).length;
 console.log(`Number of days Employee Worked: ${numDaysWorked}`);
+
+// UC8 - Store the Day and the Daily Wage along with the Total Wage using Map
+let dailyWageMap = new Map();
+totalEmpHrs = 0;
+totalWorkingDays = 0;
+
+while (totalEmpHrs < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
+    totalWorkingDays++;
+    empCheck = Math.floor(Math.random() * 3);
+    let workHours = getWorkingHours(empCheck);
+    totalEmpHrs += workHours;
+    let dailyWage = workHours * WAGE_PER_HOUR;
+
+    dailyWageMap.set(totalWorkingDays, dailyWage);
+}
+let totalWageUsingMap = Array.from(dailyWageMap.values()).reduce((total, wage) => total + wage, 0);
+
+console.log("Day-wise Wages:", dailyWageMap);
+console.log(`Total Wage computed using Map: $${totalWageUsingMap}`);
