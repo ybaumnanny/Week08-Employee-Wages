@@ -220,3 +220,32 @@ while (totalEmpHrs < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
 }
 
 console.log("Employee Daily Records:", empDailyRecords);
+
+// UC11 - Perform Object Operations using Arrow Functions
+
+// a. Calculate total Wage and total hours worked using arrow functions
+let totalWageObjArrow = empDailyRecords.reduce((total, record) => total + record.wageEarned, 0);
+let totalHoursObjArrow = empDailyRecords.reduce((total, record) => total + record.hoursWorked, 0);
+console.log(`Total Wage using Arrow Function: $${totalWageObjArrow}`);
+console.log(`Total Hours worked using Arrow Function: ${totalHoursObjArrow}`);
+
+// b. Show the full working days using forEach
+let fullWorkingDaysObj = [];
+empDailyRecords.forEach(record => {
+    if (record.hoursWorked === FULL_TIME_HOURS) {
+        fullWorkingDaysObj.push(`Day ${record.day}`);
+    }
+});
+console.log("Full Working Days:", fullWorkingDaysObj);
+
+// c. Show Part working days using Map by reducing to String Array
+let partWorkingDaysObj = empDailyRecords
+    .filter(record => record.hoursWorked === PART_TIME_HOURS)
+    .map(record => `Day ${record.day}`);
+console.log("Part Working Days:", partWorkingDaysObj);
+
+// d. No working days only using Map function
+let noWorkingDaysObj = empDailyRecords
+    .filter(record => record.hoursWorked === 0)
+    .map(record => `Day ${record.day}`);
+console.log("No Working Days:", noWorkingDaysObj);
