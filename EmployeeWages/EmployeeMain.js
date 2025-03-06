@@ -146,3 +146,45 @@ let totalWageUsingMap = Array.from(dailyWageMap.values()).reduce((total, wage) =
 
 console.log("Day-wise Wages:", dailyWageMap);
 console.log(`Total Wage computed using Map: $${totalWageUsingMap}`);
+
+// UC9 - Perform operations using Arrow Functions on Daily Wage Map and Daily Hour Map
+
+// Creating Daily Hour Map
+let dailyHourMap = new Map();
+totalEmpHrs = 0;
+totalWorkingDays = 0;
+
+dailyWageMap.clear(); // Resetting dailyWageMap to refill it with new values
+
+while (totalEmpHrs < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
+    totalWorkingDays++;
+    empCheck = Math.floor(Math.random() * 3);
+    let workHours = getWorkingHours(empCheck);
+    totalEmpHrs += workHours;
+    let dailyWage = workHours * WAGE_PER_HOUR;
+    
+    dailyWageMap.set(totalWorkingDays, dailyWage);
+    dailyHourMap.set(totalWorkingDays, workHours);
+}
+
+// a. Calculate total Wage and total hours worked using arrow functions
+let totalWageArrow = Array.from(dailyWageMap.values()).reduce((total, wage) => total + wage, 0);
+let totalHoursArrow = Array.from(dailyHourMap.values()).reduce((total, hours) => total + hours, 0);
+console.log(`Total Wage using Arrow Function: $${totalWageArrow}`);
+console.log(`Total Hours worked using Arrow Function: ${totalHoursArrow}`);
+
+// b. Show the full working days, part working days, and no working days
+let fullWorkingDays = Array.from(dailyHourMap.entries())
+    .filter(([day, hours]) => hours === FULL_TIME_HOURS)
+    .map(([day, hours]) => `Day ${day}`);
+
+let partWorkingDays = Array.from(dailyHourMap.entries())
+    .filter(([day, hours]) => hours === PART_TIME_HOURS)
+    .map(([day, hours]) => `Day ${day}`);
+
+let noWorkingDays = Array.from(dailyHourMap.entries())
+    .filter(([day, hours]) => hours === 0)
+    .map(([day, hours]) => `Day ${day}`);
+console.log("Full Working Days: ", fullWorkingDays);
+console.log("Part Working Days: ", partWorkingDays);
+console.log("No Working Days: ", noWorkingDays);
