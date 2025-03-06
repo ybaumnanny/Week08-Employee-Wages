@@ -258,5 +258,23 @@ console.log(emp1.getDetails());
 let emp2 = new EmployeePayroll(176, "Vatsalya Katariya", "Female", 7000000, "2002-09-24");
 console.log(emp2.getDetails());//UC-14 Check name
 
+//UC15-Ability to check the employee id and salary are non zero positive number, the gender is M or F and date is not a future date
+try {
+    let emp1 = new EmployeePayroll(183, "Yaman Mahtha", 500000, "M", "2003-10-03");
+    console.log(emp1.getDetails());
+
+    let emp2 = new EmployeePayroll(176, "Vatsalya Katariya", 7000000, "F", "2002-09-24");
+    console.log(emp2.getDetails());
+
+    // Invalid cases to trigger error handling
+    let emp3 = new EmployeePayroll(-5, "John Doe", 40000, "M", "2025-01-01"); // Invalid ID & Future Date
+    console.log(emp3.getDetails());
+
+    let emp4 = new EmployeePayroll(200, "Ab", 30000, "X", "2023-05-15"); // Invalid Name & Gender
+    console.log(emp4.getDetails());
+
+} catch (error) {
+    console.error("Error:", error.message);
+}
 console.log(emp1.getDetails());
 console.log(emp2.getDetails());
