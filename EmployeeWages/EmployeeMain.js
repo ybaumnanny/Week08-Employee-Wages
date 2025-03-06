@@ -249,3 +249,12 @@ let noWorkingDaysObj = empDailyRecords
     .filter(record => record.hoursWorked === 0)
     .map(record => `Day ${record.day}`);
 console.log("No Working Days:", noWorkingDaysObj);
+
+// UC12-Added employee payroll id name and salary
+const EmployeePayroll = require('./EmployeePayroll');
+
+let emp1 = new EmployeePayroll(183, "Yaman Mahtha", 500000);
+let emp2 = new EmployeePayroll(176, "Vatsalya Katariya", 7000000);
+
+console.log(emp1.getDetails());
+console.log(emp2.getDetails());
