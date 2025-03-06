@@ -50,3 +50,15 @@ let empHrs = 0;
 empCheck = Math.floor(Math.random() * 3);
 empHrs = getWorkingHours(empCheck);
 console.log(`Employee worked for ${empHrs} hours.`);
+
+//UC4- Calculate monthly wage for employee
+
+const NUM_OF_WORKING_DAYS = 2;
+let empWage = 0;
+for (let day = 0; day < NUM_OF_WORKING_DAYS; day++) {
+    empCheck = Math.floor(Math.random() * 3);
+    empHrs += getWorkingHours(empCheck);
+}
+empWage = empHrs * WAGE_PER_HOUR;
+console.log(`Total hours worked: ${empHrs}`);
+console.log(`Monthly wage: $${empWage}`);
