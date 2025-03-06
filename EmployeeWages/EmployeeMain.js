@@ -62,3 +62,18 @@ for (let day = 0; day < NUM_OF_WORKING_DAYS; day++) {
 empWage = empHrs * WAGE_PER_HOUR;
 console.log(`Total hours worked: ${empHrs}`);
 console.log(`Monthly wage: $${empWage}`);
+
+//UC-5 Calculate monthly wage for employee with max working hours OR max working days
+const MAX_WORKING_HOURS = 100;
+const MAX_WORKING_DAYS = 20;
+let totalEmpHrs = 0;
+let totalWorkingDays = 0;
+while (totalEmpHrs < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
+    totalWorkingDays++;
+    empCheck = Math.floor(Math.random() * 3);
+    totalEmpHrs += getWorkingHours(empCheck);
+}
+let totalEmpWage = totalEmpHrs * WAGE_PER_HOUR;
+console.log(`Total hours worked: ${totalEmpHrs}`);
+console.log(`Total days worked: ${totalWorkingDays}`);
+console.log(`Total wage: $${totalEmpWage}`);
