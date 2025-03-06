@@ -188,3 +188,35 @@ let noWorkingDays = Array.from(dailyHourMap.entries())
 console.log("Full Working Days: ", fullWorkingDays);
 console.log("Part Working Days: ", partWorkingDays);
 console.log("No Working Days: ", noWorkingDays);
+
+// UC10 - Store Day, Hours Worked, and Wage Earned in an Object
+let empDailyRecords = [];
+totalEmpHrs = 0;
+totalWorkingDays = 0;
+
+dailyWageMap.clear(); // Reset Map for new records
+dailyHourMap.clear();
+
+while (totalEmpHrs < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
+    totalWorkingDays++;
+    empCheck = Math.floor(Math.random() * 3);
+    let workHours = getWorkingHours(empCheck);
+    totalEmpHrs += workHours;
+    let dailyWage = workHours * WAGE_PER_HOUR;
+    
+    // Store data in an object
+    let empRecord = {
+        day: totalWorkingDays,
+        hoursWorked: workHours,
+        wageEarned: dailyWage
+    };
+    
+    // Add record to the array
+    empDailyRecords.push(empRecord);
+    
+    // Also update the Maps
+    dailyWageMap.set(totalWorkingDays, dailyWage);
+    dailyHourMap.set(totalWorkingDays, workHours);
+}
+
+console.log("Employee Daily Records:", empDailyRecords);
